@@ -1,0 +1,54 @@
+
+/* style.css - small custom styles on top of Bootstrap */
+
+:root {
+    --brand: #1e3a8a;        /* main color (navy blue): change this to re-theme the whole app */
+    --brand-dark: #172554;
+    --accent: #f59e0b;       /* highlight color (amber) */
+}
+
+body { background: #f1f4f9; }
+
+.bg-brand { background-color: var(--brand) !important; }
+.btn-brand {
+    background-color: var(--brand);
+    border-color: var(--brand);
+    color: #fff;
+}
+.btn-brand:hover, .btn-brand:focus { background-color: var(--brand-dark); border-color: var(--brand-dark); color: #fff; }
+.text-brand { color: var(--brand) !important; }
+
+.navbar .nav-link.active { color: var(--accent) !important; font-weight: 600; }
+
+/* Dashboard stat cards */
+.stat-card { border: 0; border-left: 5px solid var(--accent); }
+.stat-card .stat-value { font-size: 1.8rem; font-weight: 700; }
+
+/* Scan box on the cashier screen */
+.scan-input { border: 2px solid var(--brand); font-size: 1.25rem; }
+.scan-input:focus { border-color: var(--accent); box-shadow: 0 0 0 .25rem rgba(245, 158, 11, .25); }
+
+/* Product tiles on the New Sale page */
+.product-tile { border: 1px solid #dde3ee; transition: transform .1s, box-shadow .1s; }
+.product-tile:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.1); border-color: var(--accent); }
+.product-tile.out { opacity: .55; }
+.product-scroll { max-height: 70vh; overflow-y: auto; overflow-x: hidden; }
+
+/* Cart: long lists scroll, the totals stay visible */
+.cart-list { max-height: 38vh; overflow-y: auto; }
+
+/* Cart stays visible while scrolling on big screens */
+@media (min-width: 992px) { .cart-sticky { position: sticky; top: 1rem; } }
+
+/* Login page */
+.login-page { min-height: 100vh; background: linear-gradient(160deg, var(--brand) 0%, #3b5bdb 100%); }
+
+/* Receipt */
+.receipt { max-width: 380px; margin: 0 auto; background: #fff; font-family: "Courier New", monospace; }
+.receipt hr { border-top: 2px dashed #999; opacity: 1; }
+
+/* Printing: hide buttons/navbar, show only the receipt */
+@media print {
+    .no-print { display: none !important; }
+    body { background: #fff; }
+    .receipt { box-shadow: none !important; border: 0 !important; }
