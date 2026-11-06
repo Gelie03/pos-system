@@ -5,7 +5,7 @@
  */
 
 // >>> Change these to make the system "yours" <<<
-define('STORE_NAME', 'Ange's Friend Grocers');   // shown in navbar, login page, and receipts
+define('STORE_NAME', "Ange's Friend Grocers");   // shown in navbar, login page, and receipts
 define('LOW_STOCK', 5);                 // stock at or below this = "low stock"
 define('DISCOUNT_RATE', 0.20);          // Senior / PWD discount = 20%
 
