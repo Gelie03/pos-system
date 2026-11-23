@@ -45,18 +45,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="assets/style.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+    <!-- Remembers light/dark mode (see assets/theme.js) -->
+    <script src="assets/theme.js"></script>
 </head>
 <body class="login-page">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-11 col-sm-8 col-md-6 col-lg-4">
-                <div class="card shadow border-0 mt-5">
-                    <div class="card-header bg-brand text-white text-center py-4">
-                        <div class="fs-1"><i class="bi bi-shop"></i></div>
-                        <h4 class="mb-0 fw-bold"><?= e(STORE_NAME) ?></h4>
-                        <div class="small">Cashier &amp; Admin Login</div>
-                    </div>
-                    <div class="card-body p-4">
+
+    <!-- Light / dark mode switch -->
+    <button type="button" class="btn btn-sm btn-outline-secondary position-fixed top-0 end-0 m-3"
+            data-theme-toggle title="Switch to dark mode">
+        <i class="bi bi-moon-stars-fill"></i>
+    </button>
+
+    <div class="container py-4">
+        <div class="card login-card shadow-lg">
+            <div class="row g-0">
+
+                <!-- Left side: logo and store name -->
+                <div class="col-md-5 login-side p-4 p-md-5 d-flex flex-column justify-content-center text-center text-md-start">
+                    <img src="assets/logo.svg" alt="" class="login-logo mb-3 mx-auto mx-md-0">
+                    <h3 class="fw-bold mb-1"><?= e(STORE_NAME) ?></h3>
+                    <p class="mb-3 opacity-75">Your friendly neighborhood minimart</p>
+                    <ul class="list-unstyled login-points small mb-0 d-none d-md-block">
+                        <li><i class="bi bi-upc-scan"></i> Fast item-code scanning</li>
+                        <li><i class="bi bi-percent"></i> Senior / PWD discounts</li>
+                        <li><i class="bi bi-receipt"></i> Printable receipts</li>
+                    </ul>
+                </div>
+
+                <!-- Right side: the login form -->
+                <div class="col-md-7">
+                    <div class="card-body p-4 p-md-5">
+                        <h4 class="fw-bold mb-1">Welcome back</h4>
+                        <p class="text-body-secondary mb-4">Log in to start your shift.</p>
+
                         <?php if ($error): ?>
                             <div class="alert alert-danger py-2"><?= e($error) ?></div>
                         <?php endif; ?>
@@ -64,12 +86,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <form method="post">
                             <div class="mb-3">
                                 <label for="username" class="form-label">Username</label>
-                                <input type="text" id="username" name="username" class="form-control form-control-lg"
-                                       required autofocus value="<?= e($_POST['username'] ?? '') ?>">
+                                <div class="input-group input-group-lg">
+                                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                    <input type="text" id="username" name="username" class="form-control"
+                                           required autofocus value="<?= e($_POST['username'] ?? '') ?>">
+                                </div>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-4">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" id="password" name="password" class="form-control form-control-lg" required>
+                                <div class="input-group input-group-lg">
+                                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                                    <input type="password" id="password" name="password" class="form-control" required>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-brand btn-lg w-100">
                                 <i class="bi bi-box-arrow-in-right"></i> Log in
@@ -77,6 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </form>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

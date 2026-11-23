@@ -65,7 +65,7 @@ while ($r = $rows->fetch_assoc()) {
 <div class="card shadow-sm">
     <div class="table-responsive">
         <table class="table table-hover align-middle mb-0">
-            <thead class="table-light">
+            <thead class="thead-soft">
                 <tr>
                     <th>Receipt #</th>
                     <th>Date</th>
@@ -102,7 +102,7 @@ while ($r = $rows->fetch_assoc()) {
             <?php endforeach; ?>
             </tbody>
             <?php if ($sales): ?>
-            <tfoot class="table-light">
+            <tfoot class="thead-soft">
                 <tr>
                     <th colspan="6" class="text-end">Total sales (<?= count($sales) ?> transactions)</th>
                     <th class="text-end"><?= peso($grand) ?></th>

@@ -1,9 +1,9 @@
-# Mabuhay Mart - Point of Sale (POS) System
+# Ange's Friend Grocers - Point of Sale (POS) System
 
-Final project for **PHP and MySQL Development (Web Systems Technologies)**.
+A POS system for a minimart. Final project for **PHP and MySQL Development (Web Systems Technologies)**.
 Built with **PHP, MySQL (MySQLi), HTML, CSS, and Bootstrap 5**.
 
-> The store name "Mabuhay Mart" is a placeholder. Change `STORE_NAME` in `includes/functions.php` to your own store name.
+> The store name is set by `STORE_NAME` in `includes/functions.php`.
 
 ## Features
 

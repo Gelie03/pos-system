@@ -75,7 +75,7 @@ require_once 'includes/header.php';
     <!-- Add user form -->
     <div class="col-lg-4">
         <div class="card shadow-sm">
-            <div class="card-header bg-white fw-bold">Add a user</div>
+            <div class="card-header bg-body fw-bold">Add a user</div>
             <div class="card-body">
                 <?php if ($errors): ?>
                     <div class="alert alert-danger py-2"><ul class="mb-0 ps-3">
@@ -114,7 +114,7 @@ require_once 'includes/header.php';
         <div class="card shadow-sm">
             <div class="table-responsive">
                 <table class="table align-middle mb-0">
-                    <thead class="table-light">
+                    <thead class="thead-soft">
                         <tr><th>Name</th><th>Username</th><th>Role</th><th>Created</th><th></th></tr>
                     </thead>
                     <tbody>

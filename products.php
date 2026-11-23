@@ -65,7 +65,7 @@ $products = $stmt->get_result();
 <div class="card shadow-sm">
     <div class="table-responsive">
         <table class="table table-hover align-middle mb-0">
-            <thead class="table-light">
+            <thead class="thead-soft">
                 <tr>
                     <th>Code</th>
                     <th>Product</th>

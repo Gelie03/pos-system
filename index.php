@@ -63,7 +63,7 @@ $recent = $conn->query('SELECT id, receipt_no, total_amount, payment_method, cre
     <!-- Best sellers -->
     <div class="col-lg-4">
         <div class="card shadow-sm h-100">
-            <div class="card-header bg-white fw-bold"><i class="bi bi-trophy text-brand"></i> Best sellers</div>
+            <div class="card-header bg-body fw-bold"><i class="bi bi-trophy text-brand"></i> Best sellers</div>
             <ul class="list-group list-group-flush">
                 <?php if ($best->num_rows === 0): ?>
                     <li class="list-group-item text-muted">No sales yet.</li>
@@ -81,7 +81,7 @@ $recent = $conn->query('SELECT id, receipt_no, total_amount, payment_method, cre
     <!-- Low stock -->
     <div class="col-lg-4">
         <div class="card shadow-sm h-100">
-            <div class="card-header bg-white fw-bold"><i class="bi bi-exclamation-triangle text-danger"></i> Needs restocking</div>
+            <div class="card-header bg-body fw-bold"><i class="bi bi-exclamation-triangle text-danger"></i> Needs restocking</div>
             <ul class="list-group list-group-flush">
                 <?php if ($low_list->num_rows === 0): ?>
                     <li class="list-group-item text-muted">All products have enough stock.</li>
@@ -101,7 +101,7 @@ $recent = $conn->query('SELECT id, receipt_no, total_amount, payment_method, cre
     <!-- Recent sales -->
     <div class="col-lg-4">
         <div class="card shadow-sm h-100">
-            <div class="card-header bg-white fw-bold"><i class="bi bi-clock-history text-brand"></i> Recent sales</div>
+            <div class="card-header bg-body fw-bold"><i class="bi bi-clock-history text-brand"></i> Recent sales</div>
             <ul class="list-group list-group-flush">
                 <?php if ($recent->num_rows === 0): ?>
                     <li class="list-group-item text-muted">No sales yet.</li>

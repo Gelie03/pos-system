@@ -51,15 +51,22 @@ $item_count = array_sum(array_column($items, 'qty'));
                         <form method="post" action="cart_action.php" class="h-100">
                             <input type="hidden" name="action" value="add">
                             <input type="hidden" name="id" value="<?= (int)$p['id'] ?>">
-                            <button type="submit" class="product-tile card h-100 w-100 text-start p-2 <?= $out ? 'out' : '' ?>"
+                            <button type="submit" class="product-tile card h-100 w-100 text-start cat-<?= e(strtolower($p['category'])) ?> <?= $out ? 'out' : '' ?>"
                                     <?= $out ? 'disabled' : '' ?>>
-                                <span class="small text-muted"><?= e($p['category']) ?>
-                                    <?php if ($p['barcode']): ?> &middot; <?= e($p['barcode']) ?><?php endif; ?>
+                                <span class="tile-top">
+                                    <span class="tile-cat"><?= e($p['category']) ?></span>
+                                    <?php if ($p['barcode']): ?><span class="tile-code"><?= e($p['barcode']) ?></span><?php endif; ?>
                                 </span>
-                                <span class="fw-semibold"><?= e($p['product_name']) ?></span>
-                                <span class="text-brand fw-bold"><?= peso($p['price']) ?></span>
-                                <span class="small <?= $out ? 'text-danger' : 'text-muted' ?>">
-                                    <?= $out ? 'Out of stock' : 'Stock: ' . (int)$p['stock'] ?>
+                                <span class="tile-name"><?= e($p['product_name']) ?></span>
+                                <span class="tile-bottom">
+                                    <span class="tile-price"><?= peso($p['price']) ?></span>
+                                    <?php if ($out): ?>
+                                        <span class="tile-stock stock-out">Out of stock</span>
+                                    <?php elseif ((int)$p['stock'] <= LOW_STOCK): ?>
+                                        <span class="tile-stock stock-low"><?= (int)$p['stock'] ?> left</span>
+                                    <?php else: ?>
+                                        <span class="tile-stock stock-ok"><?= (int)$p['stock'] ?> in stock</span>
+                                    <?php endif; ?>
                                 </span>
                             </button>
                         </form>
@@ -72,7 +79,7 @@ $item_count = array_sum(array_column($items, 'qty'));
     <!-- ========== RIGHT: CART ========== -->
     <div class="col-lg-5">
         <div class="card shadow-sm cart-sticky">
-            <div class="card-header bg-white d-flex justify-content-between align-items-center">
+            <div class="card-header bg-body d-flex justify-content-between align-items-center">
                 <strong><i class="bi bi-cart3 text-brand"></i> Current Order
                     <span class="badge text-bg-secondary ms-1"><?= (int)$item_count ?> item<?= $item_count == 1 ? '' : 's' ?></span>
                 </strong>
@@ -128,7 +135,7 @@ $item_count = array_sum(array_column($items, 'qty'));
             </div>
 
             <?php if ($items): ?>
-            <div class="card-footer bg-white">
+            <div class="card-footer bg-body">
                 <!-- Payment form -> checkout.php saves the sale -->
                 <form method="post" action="checkout.php" id="checkoutForm">
 
