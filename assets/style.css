@@ -1,24 +1,91 @@
-
-/* style.css - small custom styles on top of Bootstrap */
+/* style.css - custom styles on top of Bootstrap 5.3
+ * ----------------------------------------------------------------
+ * THEME COLORS: change --brand / --accent below to re-theme the app.
+ * Dark mode uses Bootstrap's data-bs-theme="dark" (switched by assets/theme.js).
+ */
 
 :root {
-    --brand: #1e3a8a;        /* main color (navy blue): change this to re-theme the whole app */
-    --brand-dark: #172554;
-    --accent: #f59e0b;       /* highlight color (amber) */
+    --brand: #8c1c2e;            /* maroon: navbar, main buttons */
+    --brand-dark: #6a1322;       /* darker maroon: hover */
+    --brand-text: #8c1c2e;       /* maroon used for text and icons */
+    --accent: #f2b134;           /* gold highlight */
+    --page-bg: #fbf5ef;          /* cream page background */
+    --card-surface: #ffffff;
+    --soft: #f3e8e0;             /* table headers */
+    --line: #eadfd6;             /* light borders */
+
+    /* Make Bootstrap's "primary" maroon too (links, badges, outline buttons) */
+    --bs-primary: #8c1c2e;
+    --bs-primary-rgb: 140, 28, 46;
+    --bs-link-color: #8c1c2e;
+    --bs-link-color-rgb: 140, 28, 46;
+    --bs-link-hover-color: #6a1322;
+    --bs-link-hover-color-rgb: 106, 19, 34;
 }
 
-body { background: #f1f4f9; }
+[data-bs-theme="dark"] {
+    --brand: #8c1c2e;
+    --brand-dark: #a62338;
+    --brand-text: #f08a9b;       /* lighter pink so it is readable on dark */
+    --accent: #f2b134;
+    --page-bg: #171112;
+    --card-surface: #241b1d;
+    --soft: #33262a;
+    --line: #3d2d31;
 
+    --bs-body-bg: #171112;
+    --bs-body-bg-rgb: 23, 17, 18;
+    --bs-primary-rgb: 240, 138, 155;
+    --bs-link-color: #f08a9b;
+    --bs-link-color-rgb: 240, 138, 155;
+    --bs-link-hover-color: #ffb3bf;
+    --bs-link-hover-color-rgb: 255, 179, 191;
+    --bs-border-color: #3d2d31;
+}
+
+body { background: var(--page-bg); }
+
+.card { --bs-card-bg: var(--card-surface); --bs-card-border-color: var(--line); }
+
+/* Brand helpers */
 .bg-brand { background-color: var(--brand) !important; }
+.text-brand { color: var(--brand-text) !important; }
 .btn-brand {
     background-color: var(--brand);
     border-color: var(--brand);
     color: #fff;
 }
-.btn-brand:hover, .btn-brand:focus { background-color: var(--brand-dark); border-color: var(--brand-dark); color: #fff; }
-.text-brand { color: var(--brand) !important; }
+.btn-brand:hover, .btn-brand:focus, .btn-brand:active {
+    background-color: var(--brand-dark) !important;
+    border-color: var(--brand-dark) !important;
+    color: #fff;
+}
 
+/* Bootstrap's blue "primary" outline button -> maroon */
+.btn-outline-primary {
+    --bs-btn-color: var(--brand-text);
+    --bs-btn-border-color: var(--brand-text);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--brand);
+    --bs-btn-hover-border-color: var(--brand);
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--brand-dark);
+    --bs-btn-active-border-color: var(--brand-dark);
+}
+
+/* Form focus ring in maroon instead of blue */
+.form-control:focus, .form-select:focus {
+    border-color: var(--brand);
+    box-shadow: 0 0 0 .25rem rgba(140, 28, 46, .2);
+}
+
+/* Navbar */
+.navbar { box-shadow: 0 2px 8px rgba(0, 0, 0, .15); }
 .navbar .nav-link.active { color: var(--accent) !important; font-weight: 600; }
+.brand-logo { width: 32px; height: 32px; border-radius: 8px; }
+
+/* Table header and footer rows */
+.thead-soft { --bs-table-bg: var(--soft); --bs-table-color: var(--bs-body-color); }
 
 /* Dashboard stat cards */
 .stat-card { border: 0; border-left: 5px solid var(--accent); }
@@ -26,25 +93,47 @@ body { background: #f1f4f9; }
 
 /* Scan box on the cashier screen */
 .scan-input { border: 2px solid var(--brand); font-size: 1.25rem; }
-.scan-input:focus { border-color: var(--accent); box-shadow: 0 0 0 .25rem rgba(245, 158, 11, .25); }
+.scan-input:focus { border-color: var(--accent); box-shadow: 0 0 0 .25rem rgba(242, 177, 52, .3); }
 
 /* Product tiles on the New Sale page */
-.product-tile { border: 1px solid #dde3ee; transition: transform .1s, box-shadow .1s; }
-.product-tile:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.1); border-color: var(--accent); }
+.product-tile { border: 1px solid var(--line); color: var(--bs-body-color); transition: transform .1s, box-shadow .1s; }
+.product-tile:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 0, 0, .15); border-color: var(--accent); }
 .product-tile.out { opacity: .55; }
-.product-scroll { max-height: 70vh; overflow-y: auto; overflow-x: hidden; }
+.product-scroll { max-height: 60vh; overflow-y: auto; overflow-x: hidden; padding: 2px; }
 
 /* Cart: long lists scroll, the totals stay visible */
 .cart-list { max-height: 38vh; overflow-y: auto; }
-
-/* Cart stays visible while scrolling on big screens */
 @media (min-width: 992px) { .cart-sticky { position: sticky; top: 1rem; } }
 
-/* Login page */
-.login-page { min-height: 100vh; background: linear-gradient(160deg, var(--brand) 0%, #3b5bdb 100%); }
+/* ---------- Login page ---------- */
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(242, 177, 52, .18), transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(140, 28, 46, .18), transparent 45%),
+        var(--page-bg);
+}
+.login-card { max-width: 860px; margin: 0 auto; border: 0; border-radius: 1.25rem; overflow: hidden; }
+.login-side {
+    background: linear-gradient(155deg, var(--brand) 0%, #5c1421 100%);
+    color: #fff;
+    position: relative;
+}
+.login-side::after {          /* soft gold circle for decoration */
+    content: "";
+    position: absolute;
+    width: 220px; height: 220px;
+    right: -70px; bottom: -70px;
+    border-radius: 50%;
+    background: rgba(242, 177, 52, .22);
+}
+.login-logo { width: 84px; height: 84px; border-radius: 20px; box-shadow: 0 6px 18px rgba(0, 0, 0, .3); }
+.login-points li { margin-bottom: .5rem; }
 
-/* Receipt */
-.receipt { max-width: 380px; margin: 0 auto; background: #fff; font-family: "Courier New", monospace; }
+/* ---------- Receipt (always light, so it prints well) ---------- */
+.receipt { max-width: 380px; margin: 0 auto; --bs-card-bg: #fff; background: #fff; font-family: "Courier New", monospace; }
 .receipt hr { border-top: 2px dashed #999; opacity: 1; }
 
 /* Printing: hide buttons/navbar, show only the receipt */
@@ -52,3 +141,32 @@ body { background: #f1f4f9; }
     .no-print { display: none !important; }
     body { background: #fff; }
     .receipt { box-shadow: none !important; border: 0 !important; }
+}
+
+/* ---------- Product cards (New Sale screen) ---------- */
+.product-tile {
+    --cat: var(--brand);                      /* each category sets its own color below */
+    padding: .6rem .75rem;
+    gap: .25rem;
+    border-left: 5px solid var(--cat);
+    background: var(--card-surface);
+    cursor: pointer;
+}
+.product-tile:disabled { cursor: not-allowed; }
+.cat-food      { --cat: #d9822b; }
+.cat-drinks    { --cat: #2b8fd9; }
+.cat-snacks    { --cat: #c2398a; }
+.cat-household { --cat: #2f9e6e; }
+.cat-others    { --cat: #7a6f8c; }
+
+.tile-top    { display: flex; justify-content: space-between; align-items: center; font-size: .72rem; }
+.tile-cat    { color: var(--cat); font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+.tile-code   { color: var(--bs-secondary-color); font-family: "Courier New", monospace; }
+.tile-name   { font-weight: 600; line-height: 1.2; min-height: 2.4em; }
+.tile-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
+.tile-price  { font-weight: 800; font-size: 1.1rem; color: var(--brand-text); }
+.tile-stock  { font-size: .72rem; padding: .1rem .5rem; border-radius: 999px; font-weight: 600; }
+.stock-ok    { background: rgba(47, 158, 110, .15); color: #2f9e6e; }
+.stock-low   { background: rgba(242, 177, 52, .22); color: #b07d00; }
+.stock-out   { background: rgba(220, 53, 69, .15); color: #dc3545; }
+[data-bs-theme="dark"] .stock-low { color: #f2b134; }

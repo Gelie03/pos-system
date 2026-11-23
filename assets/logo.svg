@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Ange's Friend Grocers logo">
+  <!-- maroon rounded square -->
+  <rect width="64" height="64" rx="14" fill="#8c1c2e"/>
+  <!-- basket handles (gold) -->
+  <path d="M24 28l5-10M40 28l-5-10" stroke="#f2b134" stroke-width="3.6" stroke-linecap="round" fill="none"/>
+  <!-- basket body (white) -->
+  <path d="M17 28h30l-3.4 15.6a3 3 0 0 1-2.9 2.4H23.3a3 3 0 0 1-2.9-2.4z" fill="#ffffff"/>
+  <!-- basket rim (gold) -->
+  <rect x="14" y="25.5" width="36" height="4.5" rx="2.25" fill="#f2b134"/>
+  <!-- basket slats -->
+  <path d="M26 34v7M32 34v7M38 34v7" stroke="#8c1c2e" stroke-width="2.4" stroke-linecap="round"/>
+</svg>
