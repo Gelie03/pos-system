@@ -15,10 +15,10 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // ===== DATABASE SETTINGS =====
-$db_host = 'localhost';
-$db_user = 'root';
-$db_pass = '';
-$db_name = 'pos_db';
+$db_host = 'localhost';   // InfinityFree example: sql123.infinityfree.com
+$db_user = 'root';        // InfinityFree example: if0_12345678
+$db_pass = '';            // InfinityFree: your hosting account password
+$db_name = 'pos_db';      // InfinityFree example: if0_12345678_pos_db
 // =============================
 
 // Make MySQLi throw errors we can catch (instead of silent failures)

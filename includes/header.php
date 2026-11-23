@@ -29,14 +29,17 @@ $me         = current_user();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="assets/style.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+    <!-- Remembers light/dark mode; loaded early so the page does not flash white -->
+    <script src="assets/theme.js"></script>
 </head>
 <body>
 
 <!-- Navigation bar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-brand no-print">
     <div class="container">
-        <a class="navbar-brand fw-bold" href="<?= is_admin() ? 'index.php' : 'pos.php' ?>">
-            <i class="bi bi-shop"></i> <?= e(STORE_NAME) ?>
+        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="<?= is_admin() ? 'index.php' : 'pos.php' ?>">
+            <img src="assets/logo.svg" alt="" class="brand-logo"> <?= e(STORE_NAME) ?>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
             <span class="navbar-toggler-icon"></span>
@@ -71,6 +74,12 @@ $me         = current_user();
                 <?php endif; ?>
                 <li class="nav-item ms-lg-3 text-white-50 small">
                     <i class="bi bi-person-circle"></i> <?= e($me['name']) ?> (<?= e($me['role']) ?>)
+                </li>
+                <li class="nav-item ms-lg-2">
+                    <!-- Light / dark mode switch (see assets/theme.js) -->
+                    <button type="button" class="btn btn-sm btn-outline-light" data-theme-toggle title="Switch to dark mode">
+                        <i class="bi bi-moon-stars-fill"></i>
+                    </button>
                 </li>
                 <li class="nav-item ms-lg-2">
                     <a class="btn btn-sm btn-outline-light" href="logout.php">
